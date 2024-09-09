@@ -3,6 +3,7 @@ import { Appbar } from "../components/Appbar";
 import { BlogCardRead } from "../components/BlogCardRead";
 import { useBlog } from "../../hooks";
 import { Spinner } from "../components/Spinner";
+import Aside from "../components/Aside";
 
 function BlogRead(){
     const {id}=useParams()
@@ -22,6 +23,7 @@ function BlogRead(){
         <div>
             <Appbar/>
             <BlogCardRead blog={blogs}/>
+            
         </div>
     )
 } export default BlogRead;

@@ -2,6 +2,7 @@ import { Appbar } from "../components/Appbar"
 import Blogcard from "../components/BlogCard"
 import { Spinner } from "../components/Spinner";
 import useblogs from "../../hooks"
+import Aside from "../components/Aside";
 
 
 function FullBlog(){
@@ -16,7 +17,17 @@ function FullBlog(){
     return(
         <>
             <Appbar/>
-            {blogs.map(blog=><Blogcard key={blog.id} title={blog.title} date={blog.date} content={blog.content} id={blog.id} author={blog.author.name ||"anonymous"}/>)}
+            <div className="flex">
+                <div className="w-3/4">    
+                     {blogs.map(blog=><Blogcard key={blog.id} title={blog.title} date={blog.date} content={blog.content} id={blog.id} author={blog.author.name ||"anonymous"}/>)}</div>
+                <div>
+                    <Aside/>
+                </div>
+            </div>
+       
+            
+
+            
             
         </>
 

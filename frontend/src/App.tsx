@@ -4,7 +4,7 @@ import SignIn from './pages/singIn'
 import SignUp from './pages/signUp'
 import BlogRead from './pages/blog'
 import Publish from './pages/Publish'
-import FullBlog from './pages/FullBlog'
+import AllBlog from './pages/AllBlog'
 import FrontPage from './pages/FrontPage'
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
           <Route path='/SignIn' element={<SignIn/>}></Route>
           <Route path='/blog/:id' element={<BlogRead/>}></Route>
           <Route path="/publish" element={<Publish/>}></Route>
-          <Route path='/blogs' element={<FullBlog/>}></Route>
+          <Route path='/blogs' element={<AllBlog/>}></Route>
           <Route path='/' element={<FrontPage/>}></Route>
         </Routes>
       </BrowserRouter>
