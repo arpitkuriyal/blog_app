@@ -2,8 +2,8 @@ import { useParams } from "react-router-dom";
 import { Appbar } from "../components/Appbar";
 import { BlogCardRead } from "../components/BlogCardRead";
 import { useBlog } from "../../hooks";
-import { Spinner } from "../components/Spinner";
-import Aside from "../components/Aside";
+import { BlogSkeleton } from "../components/BlogSkeletion";
+
 
 function BlogRead(){
     const {id}=useParams()
@@ -12,9 +12,10 @@ function BlogRead(){
     if(loading || !blogs){
         return(
             <div>
-                <Spinner/>
-                <Spinner/>
-                <Spinner/>
+                <BlogSkeleton/>
+                <BlogSkeleton/>
+                <BlogSkeleton/>
+                <BlogSkeleton/>
             </div>
         )
     }

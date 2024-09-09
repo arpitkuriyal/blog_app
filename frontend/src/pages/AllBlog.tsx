@@ -1,17 +1,22 @@
 import { Appbar } from "../components/Appbar"
 import Blogcard from "../components/BlogCard"
-import { Spinner } from "../components/Spinner";
 import useblogs from "../../hooks"
 import Aside from "../components/Aside";
+import { BlogSkeleton } from "../components/BlogSkeletion";
 
 
 function FullBlog(){
     const{blogs,loading}=useblogs();
     if(loading){
-        return <div>
-                    <Spinner/>
-                    <Spinner/>
-                    <Spinner/>
+        return <div className="m-auto">
+                    <BlogSkeleton/>
+                    <BlogSkeleton/>
+                    <BlogSkeleton/>
+                    <BlogSkeleton/>
+                    <BlogSkeleton/>
+                    <BlogSkeleton/>
+                    <BlogSkeleton/>
+
                 </div>
     }
     return(
