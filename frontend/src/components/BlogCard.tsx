@@ -15,7 +15,7 @@ function Blogcard({title,content,date,id,author}:blogsProps){
             <div className='flex flex-col w-2/3 m-auto py-5 border-t-2 border-r-0 border-l-0 border-b-1 border-gray-300'>
             <div className='flex space-x-2 items-center '>
                 <Avatar name={author}/>
-                <div className='font-semibold'>{author}</div>
+                <div className='font-semibold text-pretty'>{author}</div>
                 <div className='text-gray-400'>{date}</div>
                 <Star/>
             </div>
