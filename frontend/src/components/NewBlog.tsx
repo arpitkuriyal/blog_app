@@ -1,6 +1,5 @@
 import { CreatePostType } from "@arpitdevs/common1";
 import { ChangeEvent, useState } from "react";
-import { backendURL } from "../config";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { createBlogInput } from "@100xdevs/medium-common";
@@ -26,7 +25,7 @@ function NewBlog(){
                 }} />
              <button className="rounded-lg bg-green-500 px-4" onClick={async ()=>{
                 try{
-                    const response=await axios.post(`${backendURL}/api/v1/blog`,{
+                    const response=await axios.post(`${import.meta.env.VITE_backendURL}/api/v1/blog`,{
                         title:inputValue.title,
                         content:inputValue.content
                     },{

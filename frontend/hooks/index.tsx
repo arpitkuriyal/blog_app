@@ -1,6 +1,5 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
-import { backendURL } from "../src/config"
 export interface BlogCardProps{
     date:string
     id:string,
@@ -17,7 +16,7 @@ export function useBlog({id}:{id:string}){
     const [blogs,setBlogs]=useState<BlogCardProps>()
     useEffect(()=>{
         const fetch=async ()=>{
-           const response=await axios.get(`${backendURL}/api/v1/blog/${id}`,{
+           const response=await axios.get(`${import.meta.env.VITE_backendURL}/api/v1/blog/${id}`,{
                 headers:{
                     Authorization:localStorage.getItem("token")
                 }
@@ -45,7 +44,7 @@ function useBlogs(){
     useEffect(()=>{
         const fetchBlogs=async()=>{
             try{
-                const respnose=await axios.get(`${backendURL}/api/v1/blog/all/bulkss`,{
+                const respnose=await axios.get(`${import.meta.env.VITE_backendURL}/api/v1/blog/all/bulkss`,{
                     headers:{
                         Authorization:localStorage.getItem("token")
                     }

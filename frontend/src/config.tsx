@@ -1,1 +1,0 @@
-export const backendURL="https://backend.arpitkuriyal2002.workers.dev"

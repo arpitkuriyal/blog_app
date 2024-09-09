@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import {SignupType,signupInput} from "@arpitdevs/common1"
 
 import axios from "axios";
-import { backendURL } from "../config";
 interface type{
     type:"signup"|"signin"
 }
@@ -16,7 +15,7 @@ export function Auth({type}:type){
     })
     async function sendRequest(){
         try{
-            const respone=await axios.post( `${backendURL}/api/v1/user/${type==="signup"?"signup":"signin"}`,inputValue);
+            const respone=await axios.post( `${import.meta.env.VITE_backendURL}/api/v1/user/${type==="signup"?"signup":"signin"}`,inputValue);
             const {success}= signupInput.safeParse(inputValue)
             if(!success){
                 alert("invalid syntax while login")
