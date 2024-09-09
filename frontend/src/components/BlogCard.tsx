@@ -1,31 +1,45 @@
-export function BlogCard(){
-    return (
-        <div className="grid grid-cols-3 w-full h-screen pt-20 pl-20">
-            <div className="col-span-2">
-                <div className="font-bold text-4xl">
-                    Taxing Laughter:The Joke Tax Chronicles
-                </div>
-                <div className="text-gray-500">Posted On 14 August 2024</div>
-                <div>Laughter, a universal language, brings countless benefits to our mental and physical well-being. It reduces stress, boosts immunity, strengthens social bonds, and enhances cognitive function. However, in today's fast-paced world, we often neglect the joy that laughter brings, prioritizing work and productivity over moments of levity.
 
-                This leads to an invisible "tax" on laughter. Overworking, increased screen time, and societal pressures to remain serious are all factors that reduce opportunities for humor. Adults laugh far less than children, and we may even suppress it in professional settings.
+import {  type SVGProps } from 'react';
+import { Link } from 'react-router-dom';
+interface blogsProps{
+    title:string,
+    date:string,
+    content:string,
+    id:string,
+    author:string
+}
+function Blogcard({title,content,date,id,author}:blogsProps){
 
-                Now, imagine a world where laughter was literally taxed. While this may sound absurd, it raises a valuable point: laughter is precious and should be treated as such. Instead of restricting it, we should create environments that encourage humor and foster joy.
-
-                Rather than taxing laughter, we need to prioritize it. Take time to engage with activities that make you smile, share jokes with colleagues, and embrace moments of lightness. In doing so, we’ll preserve this powerful force that enhances our lives, making us healthier, happier, and more productive without any cost.               
-                </div>
+    return(
+        <Link to={`/blog/${id}`}>
+            <div className='flex flex-col w-2/3 m-auto py-5 border-t-2 border-r-0 border-l-0 border-b-1 border-gray-300'>
+            <div className='flex space-x-2 items-center '>
+                <Avatar name={author}/>
+                <div className='font-semibold'>{author}</div>
+                <div className='text-gray-400'>{date}</div>
+                <Star/>
             </div>
-            <div className="col-span-1">
-                <div>
-                    Author
-                </div>
-                <div  >
-                    <div className=""></div>
-                    <div></div>
-                    <div></div>
-                </div>
+            <div>{title}</div>
+            <div>{content.slice(0,100)+"..."}</div>
+            <div className='mt-3 text-gray-400 font-light'>3 min read </div>
             </div>
-        </div>
+        </Link>
 
     )
+}
+
+function Avatar({name}:{name:string}){
+    return(
+        <div className="rounded-full w-7 h-7 bg-gray-300 text-center ">
+            {name[0]}
+        </div>
+    )
+}
+function Star(props: SVGProps<SVGSVGElement>) {
+	return (<svg xmlns="http://www.w3.org/2000/svg" width="3em" height="3em" viewBox="0 0 512 512" {...props}><defs><linearGradient id="meteoconsStarFill0" x1={187.9} x2={324.1} y1={138.1} y2={373.9} gradientUnits="userSpaceOnUse"><stop offset={0} stopColor="#fcd966"></stop><stop offset={0.5} stopColor="#fcd966"></stop><stop offset={1} stopColor="#fccd34"></stop></linearGradient></defs><path fill="url(#meteoconsStarFill0)" stroke="#fcd34d" strokeLinecap="round" strokeLinejoin="round" strokeWidth={4} d="m105.7 263.5l107.5 29.9a7.9 7.9 0 0 1 5.4 5.4l29.9 107.5a7.8 7.8 0 0 0 15 0l29.9-107.5a7.9 7.9 0 0 1 5.4-5.4l107.5-29.9a7.8 7.8 0 0 0 0-15l-107.5-29.9a7.9 7.9 0 0 1-5.4-5.4l-29.9-107.5a7.8 7.8 0 0 0-15 0l-29.9 107.5a7.9 7.9 0 0 1-5.4 5.4l-107.5 29.9a7.8 7.8 0 0 0 0 15Z" transform="rotate(-15 256 256)" opacity={1}></path></svg>);
+}
+export default Blogcard;
+
+function useblog(): { loading: any; blog: any; } {
+    throw new Error('Function not implemented.');
 }

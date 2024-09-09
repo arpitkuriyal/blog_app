@@ -25,20 +25,23 @@ userRouter.post('/signup', async (c) => {
 			msg:"invalid input during signup"
 		})
 	}
-	try {
-		const user = await prisma.user.create({
-			data: {
-				email: body.email,
-				password: body.password
-			}
-		});
-		const jwt = await sign({ id: user.id }, c.env.JWT_SECRET);
-		return c.json({ jwt });
-	} catch(e) {
-        console.log(e)
-		c.status(403);
-		return c.json({ error: "error while signing up" });
+	else{
+		try {
+			const user = await prisma.user.create({
+				data: {
+					email: body.email,
+					password: body.password
+				}
+			});
+			const jwt = await sign({ id: user.id }, c.env.JWT_SECRET);
+			return c.json(jwt );
+		} catch(e) {
+			console.log(e)
+			c.status(403);
+			return c.json({ error: "error while signing up" });
+		}
 	}
+
 })
 
 userRouter.post('/signin', async (c) => {
@@ -52,17 +55,19 @@ userRouter.post('/signin', async (c) => {
 			 msg:"invalid input during signup"
 		 })
 	 }
-	const user=await  prisma.user.findUnique({
-		where:{
-			email:body.email
+	 else{
+		const user=await  prisma.user.findUnique({
+			where:{
+				email:body.email
+			}
+		})
+		if (!user){
+			c.status(403);
+			c.text("user not found")
 		}
-	})
-	if (!user){
-		c.status(403);
-		c.text("user not found")
-	}
-	const jwt = await sign({ id: user?.id }, c.env.JWT_SECRET);
-	return c.json({ jwt });
+		const jwt = await sign({ id: user?.id }, c.env.JWT_SECRET);
+		return c.json(jwt );
+	 }
 })
 userRouter.get('/allUsers', async (c) => {
 	const prisma= new PrismaClient({

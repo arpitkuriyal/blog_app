@@ -26,7 +26,6 @@ blogRouter.use("/*", async (c:Context, next: () => Promise<void>)=>{
     const payload=await  verify(token,c.env.JWT_SECRET) 
     c.set("userId",payload.id)
     await next()
-    return c.text("done")
 })
 blogRouter.get('/:id',async  (c) => {
 	const id = c.req.param('id')
@@ -34,13 +33,23 @@ blogRouter.get('/:id',async  (c) => {
     const prisma= new PrismaClient({
         datasourceUrl:c.env.DATABASE_URL
     }).$extends(withAccelerate())
-    await prisma.post.findMany({
+    const  post =await prisma.post.findUnique({
         where:{
             id:id
+        },
+        select: {
+            id: true,
+            title: true,
+            content: true,
+            author: {
+                select: {
+                    name: true
+                }
+            }
         }
     })
-    c.json({
-        msg:"done"
+    return c.json({
+      post
     })
 })
 
@@ -50,33 +59,54 @@ blogRouter.post('/', async (c) => {
     }).$extends(withAccelerate());
     const userId=c.get("userId")
     const body=await c.req.json()
-    const {success}=createPostInput.safeParse(body)
-	if(!success){
-		return c.json({
-			msg:"invalid input "
-		})
+    const result=createPostInput.safeParse(body)
+	if(!result.success){
+		console.log(!result.error.issues)
+        
 	}
-    console.log(userId)
-    await prisma.post.create({
-        data:{
-            title:body.title,
-            content:body.content,
-            authorId:userId
-        }
+    else{
+        console.log(userId)
+       const post=await prisma.post.create({
+            data:{
+                title:body.title,
+                content:body.content,
+                authorId:userId
+            }
+        })
+        console.log(post)
+
+        return c.json({
+         post 
     })
-    return c.json({
-        msg:"blog is done"
-    })
+    }
+
 })
 
-blogRouter.post('/bulk',async  (c) => {
+blogRouter.get('/all/bulkss',async  (c) => {
     const prisma= new PrismaClient({
         datasourceUrl:c.env.DATABASE_URL
     }).$extends(withAccelerate())
-    const allBlog=await prisma.post.findMany({})
-    return c.json({
-        allBlog
-    })
+    try{
+        const allBlog=await prisma.post.findMany({
+            select:{
+                id:true,
+                content:true,
+                title:true,
+                author:{
+                    select:{
+                        name:true
+                    }
+                }
+
+            }
+        })
+        return c.json({
+            allBlog
+        })
+    }
+    catch(e){
+        console.log(e)
+    }
 
 })
 blogRouter.put("/",async (c)=>{

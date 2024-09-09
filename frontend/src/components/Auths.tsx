@@ -1,6 +1,7 @@
 import { ChangeEvent, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import {SignupType} from "@arpitdevs/common1"
+import {SignupType,signupInput} from "@arpitdevs/common1"
+
 import axios from "axios";
 import { backendURL } from "../config";
 interface type{
@@ -16,9 +17,16 @@ export function Auth({type}:type){
     async function sendRequest(){
         try{
             const respone=await axios.post( `${backendURL}/api/v1/user/${type==="signup"?"signup":"signin"}`,inputValue);
-            const jwt=respone.data;
-            localStorage.setItem("token",jwt)
-            navigate("/blog")
+            const {success}= signupInput.safeParse(inputValue)
+            if(!success){
+                alert("invalid syntax while login")
+            }
+            else{
+                const jwt=respone.data;
+                localStorage.setItem("token",jwt)
+                navigate("/blogs")
+            }
+
         }
         catch(e){
             console.log(e)
