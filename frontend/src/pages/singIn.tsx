@@ -4,7 +4,7 @@ import Quote from "../components/qoutes";
 function SignUp(){
     return(
 
-        <div className="w-full h-screen flex justify-center lg:grid lg:grid-cols-2">
+        <div className="w-full overflow-hidden h-screen flex justify-center lg:grid lg:grid-cols-2">
             <div>
                 <Auth type={"signin"}/>
             </div>

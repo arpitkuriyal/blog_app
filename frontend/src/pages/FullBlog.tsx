@@ -1,7 +1,7 @@
 import { Appbar } from "../components/Appbar"
 import Blogcard from "../components/BlogCard"
 import { Spinner } from "../components/Spinner";
-import useblogs from "../hooks"
+import useblogs from "../../hooks"
 
 
 function FullBlog(){

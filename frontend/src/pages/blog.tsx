@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { Appbar } from "../components/Appbar";
 import { BlogCardRead } from "../components/BlogCardRead";
-import { useBlog } from "../hooks";
+import { useBlog } from "../../hooks";
 import { Spinner } from "../components/Spinner";
 
 function BlogRead(){

@@ -1,4 +1,4 @@
-import { BlogCardProps } from "../hooks"
+import { BlogCardProps } from "../../hooks"
 
 export function BlogCardRead({blog}:{blog:BlogCardProps}){
     return (

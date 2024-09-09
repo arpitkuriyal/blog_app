@@ -5,6 +5,7 @@ import SignUp from './pages/signUp'
 import BlogRead from './pages/blog'
 import Publish from './pages/Publish'
 import FullBlog from './pages/FullBlog'
+import FrontPage from './pages/FrontPage'
 function App() {
   return (
     <>
@@ -15,6 +16,7 @@ function App() {
           <Route path='/blog/:id' element={<BlogRead/>}></Route>
           <Route path="/publish" element={<Publish/>}></Route>
           <Route path='/blogs' element={<FullBlog/>}></Route>
+          <Route path='/' element={<FrontPage/>}></Route>
         </Routes>
       </BrowserRouter>
     </>

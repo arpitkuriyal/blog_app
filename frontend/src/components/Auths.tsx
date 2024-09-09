@@ -25,6 +25,7 @@ export function Auth({type}:type){
                 const jwt=respone.data;
                 localStorage.setItem("token",jwt)
                 navigate("/blogs")
+                console.log(inputValue)
             }
 
         }
@@ -60,7 +61,9 @@ export function Auth({type}:type){
                         })
 
                     }} ></InputBox>
+                    
                     <button onClick={sendRequest} className="bg-black rounded-lg w-full mt-3 text-white p-2 font-bold">{type==="signup"?"Signup":"Signin"}</button>
+                    
                 </div>
              </div>
 

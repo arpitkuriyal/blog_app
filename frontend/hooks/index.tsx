@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
-import { backendURL } from "../config"
+import { backendURL } from "../src/config"
 export interface BlogCardProps{
     date:string
     id:string,
