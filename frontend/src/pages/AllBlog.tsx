@@ -8,7 +8,7 @@ import { BlogSkeleton } from "../components/BlogSkeletion";
 function FullBlog(){
     const{blogs,loading}=useblogs();
     if(loading){
-        return <div className="m-auto">
+        return <div>
                     <BlogSkeleton/>
                     <BlogSkeleton/>
                     <BlogSkeleton/>
