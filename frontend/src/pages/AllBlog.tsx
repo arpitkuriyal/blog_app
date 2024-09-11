@@ -16,7 +16,6 @@ function FullBlog(){
                     <BlogSkeleton/>
                     <BlogSkeleton/>
                     <BlogSkeleton/>
-                    <BlogSkeleton/>
 
                 </div>
     }
