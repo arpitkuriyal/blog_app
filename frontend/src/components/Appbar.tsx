@@ -5,7 +5,8 @@ export function Appbar(){
    return(
     <div className="flex justify-around mb-10 border-b-2 py-2">
         <div className="flex place-items-center space-x-4 ">
-            <div className="font-bold text-4xl">Medium</div>
+            <Link to="/"><div className="font-bold text-4xl">Medium</div></Link>
+            
         </div>
         <div className="flex place-items-center space-x-4">
             <Link className="font-normal flex place-items-center" to={"/publish"}><svg  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="size-9">

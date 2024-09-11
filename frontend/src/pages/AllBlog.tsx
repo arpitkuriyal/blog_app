@@ -9,6 +9,7 @@ function FullBlog(){
     const{blogs,loading}=useblogs();
     if(loading){
         return <div>
+                    <Appbar/>
                     <BlogSkeleton/>
                     <BlogSkeleton/>
                     <BlogSkeleton/>
